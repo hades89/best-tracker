@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -30,6 +31,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableAsync
+@EnableScheduling
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -64,11 +66,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().and().authorizeRequests().antMatchers("/oauth/authorize**", "/login**", "/error**", "/swagger-ui/**")
+		http.csrf().disable().cors().and().authorizeRequests()
+				.antMatchers("/oauth/authorize**", "/login**", "/error**", "/swagger-ui/**", "/api/resource/subscribe/**")
         		.permitAll()
 //				.antMatchers("/api/resource")
 //				.hasRole(Role.ROLE_ADMIN)
-				.anyRequest().authenticated().and()
+				.anyRequest().authenticated()
+        		.and()
 				.exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
