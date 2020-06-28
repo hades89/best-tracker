@@ -29,10 +29,10 @@ public class ResourceController {
 	@PreAuthorize("hasRole('ROLE_ADMIN') and hasAuthority('CREATE')")
 	@GetMapping
 	public String get() {
-		System.out.println("Name: "+SecurityContextHolder.getContext().getAuthentication().getName());
-		System.out.println("Principle: "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		System.out.println("Credentials: "+SecurityContextHolder.getContext().getAuthentication().getCredentials());
-		System.out.println("Authorities: "+SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+//		System.out.println("Name: "+SecurityContextHolder.getContext().getAuthentication().getName());
+//		System.out.println("Principle: "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//		System.out.println("Credentials: "+SecurityContextHolder.getContext().getAuthentication().getCredentials());
+//		System.out.println("Authorities: "+SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		CrawlerLoadedEvent event = new CrawlerLoadedEvent();
 		publisher.publishEvent(event);
 		
