@@ -66,6 +66,7 @@ public class ResourceController {
     @EventListener
     public void onNotification(Notification notification) {
             List<SseEmitter> deadEmitters = new ArrayList<>();
+//            System.out.println(emitters.size());
             this.emitters.forEach(emitter -> {
                     try {
                     	SseEventBuilder builder = SseEmitter.event()
