@@ -38,7 +38,7 @@ public class ResourceController {
 		
 //		AnotherEvent event2 = new AnotherEvent();
 //		publisher.publishEvent(event2);
-		System.out.println(Thread.currentThread().getName()+"Done");
+//		System.out.println(Thread.currentThread().getName()+"Done");
 		return "resource success";
 	}
 	
