@@ -30,7 +30,7 @@ public class LogExecutionTimeAspect {
 		System.out.println("here?");
 
 		for (Object object : joinPoint.getArgs()) {
-			System.out.println("hehe: "+ object);
+			System.out.println("arg: "+ object);
 		}
 	}
 }
