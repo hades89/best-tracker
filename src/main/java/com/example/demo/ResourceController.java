@@ -36,8 +36,8 @@ public class ResourceController {
 	@GetMapping
 	public String get() {
 
-//		CrawlerLoadedEvent event = new CrawlerLoadedEvent();
-//		publisher.publishEvent(event);
+		CrawlerLoadedEvent event = new CrawlerLoadedEvent();
+		publisher.publishEvent(event);
 
 
 //		AnotherEvent event2 = new AnotherEvent();
