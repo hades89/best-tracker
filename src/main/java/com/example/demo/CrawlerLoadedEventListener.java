@@ -19,7 +19,8 @@ public class CrawlerLoadedEventListener {
 		System.out.println(Thread.currentThread().getName()+" CrawlerLoaded handled: "+event.getEventType());
 		Thread.sleep(10000);
 		System.out.println(Thread.currentThread().getName()+" finish sleeping");
-		
+
+
 //		AnotherEvent event2 = new AnotherEvent();
 //		publisher.publishEvent(event2);
 	}
