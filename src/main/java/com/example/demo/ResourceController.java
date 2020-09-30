@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,14 +36,15 @@ public class ResourceController {
 	@PreAuthorize("hasRole('ROLE_ADMIN') and hasAuthority('CREATE')")
 	@GetMapping
 	public String get() {
-
-		CrawlerLoadedEvent event = new CrawlerLoadedEvent();
-		publisher.publishEvent(event);
+		System.out.println("before cache: "+resourceService.getName());
+		resourceService.updateName("abu");
+//		CrawlerLoadedEvent event = new CrawlerLoadedEvent();
+//		publisher.publishEvent(event);
 
 
 //		AnotherEvent event2 = new AnotherEvent();
 //		publisher.publishEvent(event2);
-        return resourceService.getName("Ali");
+        return resourceService.getName();
 
 
 	}

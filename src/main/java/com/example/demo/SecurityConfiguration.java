@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -32,8 +36,10 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableAsync
 @EnableScheduling
+@EnableCaching
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	@Qualifier("myUserDetailService")
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -91,6 +97,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    config.setAllowCredentials(true);
 	    source.registerCorsConfiguration("/**", config);
 	    return new CorsFilter(source);
+	}
+
+	@Bean
+	public CacheManager cacheManager(){
+		return new ConcurrentMapCacheManager();
 	}
 
 	/**
